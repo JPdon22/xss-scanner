@@ -59,8 +59,10 @@ class AlgorandXSSScanner:
         return ScanResult(
             app_id=app_id,
             vulnerabilities=vulnerabilities,
-            risk_level=risk_level,
-            recommendations=recommendations,
+            # risk_level=risk_level,
+            risk_level="",
+            # recommendations=recommendations,
+            recommendations=[],
             scan_timestamp=datetime.now().isoformat()
         )
 
