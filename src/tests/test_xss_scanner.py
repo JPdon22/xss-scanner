@@ -88,3 +88,5 @@ class TestAlgorandXSSScanner(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+#python -m unittest src/tests/test_xss_scanner.py

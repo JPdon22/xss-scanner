@@ -51,18 +51,16 @@ class AlgorandXSSScanner:
             vulnerabilities.extend(state_vulnerabilities)
 
         # Determine overall risk level
-        risk_level = self._calculate_risk_level(vulnerabilities)
+        risk_level = self._calculate_risk_level()
 
-        # Generate recommendations
-        recommendations = self._generate_recommendations(vulnerabilities)
+        # # Generate recommendations
+        recommendations = self._generate_recommendations()
 
         return ScanResult(
             app_id=app_id,
             vulnerabilities=vulnerabilities,
-            # risk_level=risk_level,
-            risk_level="",
-            # recommendations=recommendations,
-            recommendations=[],
+            risk_level=risk_level,
+            recommendations=recommendations,
             scan_timestamp=datetime.now().isoformat()
         )
 
@@ -97,7 +95,27 @@ class AlgorandXSSScanner:
         try:
             return scan_app_state(app_state)
         except Exception as e:
-            print(f"Error scanning app atate: {e}")
+            print(f"Error scanning app state: {e}")
             return None
+
+    def _calculate_risk_level(self):
+        """Scan the smart contract for vulnurabilities"""
+        try:
+            for vuln in self.vulnerabilities:
+              if  vuln['risk_level']:
+                return vuln['risk_level']
+        except Exception as e:
+            print(f"Error getting risk level: {e}")
+            return None
+
+    def _generate_recommendations(self):
+      """Scan the smart contract for vulnurabilities"""
+      try:
+          for vuln in self.vulnerabilities:
+            if  vuln['recommendations']:
+              return vuln['recommendations']
+      except Exception as e:
+          print(f"Error getting risk level: {e}")
+          return None
 
     # ... (implementation of other private methods)

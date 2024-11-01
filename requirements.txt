@@ -1,3 +1,4 @@
 py-algorand-sdk==2.6.1
 algopy==0.7.2
 requests==2.32.3
+python-dotenv==1.0.1
