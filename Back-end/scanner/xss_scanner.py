@@ -3,8 +3,8 @@ Main XSS scanner implementation for Algorand smart contracts.
 """
 from algosdk.v2client import algod
 from typing import Optional, Dict, List
-from src.models.vulnerability import Vulnerability, ScanResult
-from src.scanner.pattern_matcher import XSSPatternMatcher
+from models.vulnerability import Vulnerability, ScanResult
+from scanner.pattern_matcher import XSSPatternMatcher
 from .other_scanners import fetch_vulndb_data, scan_app_state
 from datetime import datetime
 
@@ -101,7 +101,7 @@ class AlgorandXSSScanner:
     def _calculate_risk_level(self):
         """Scan the smart contract for vulnurabilities"""
         try:
-            for vuln in self.vulnerabilities:
+            for vuln in self.scan_contract.vulnerabilities:
               if  vuln['risk_level']:
                 return vuln['risk_level']
         except Exception as e:
@@ -111,7 +111,7 @@ class AlgorandXSSScanner:
     def _generate_recommendations(self):
       """Scan the smart contract for vulnurabilities"""
       try:
-          for vuln in self.vulnerabilities:
+          for vuln in self.scan_contract.vulnerabilities:
             if  vuln['recommendations']:
               return vuln['recommendations']
       except Exception as e:

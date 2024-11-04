@@ -1,12 +1,12 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from src.scanner.xss_scanner import AlgorandXSSScanner, ScanResult
+from scanner.xss_scanner import AlgorandXSSScanner, ScanResult
 
 class TestAlgorandXSSScanner(unittest.TestCase):
 
     def setUp(self):
         self.algod_address = "http://localhost:4001"
-        self.algod_token = "test-token"
+        self.algod_token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         self.scanner = AlgorandXSSScanner(self.algod_address, self.algod_token)
 
     @patch('algosdk.v2client.algod.AlgodClient.application_info')
