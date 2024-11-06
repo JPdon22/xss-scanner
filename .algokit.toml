@@ -1,10 +1,11 @@
-[algokit]
-min_version = "v1.12.1"
+[deploy]
+command = "python -m smart_contracts deploy"
 
-[project]
-type = 'workspace'
-projects_root_path = 'projects'
+[deploy.localnet]
+environment = "localnet"
 
-[generate.devcontainer]
-description = "Generate a default 'devcontainer.json' configuration that pre-installs algokit and launches Algorand sandbox as part of codespace container provisioning."
-path = ".algokit/generators/create-devcontainer"
+[deploy.testnet]
+environment = "testnet"
+
+[deploy.mainnet]
+environment = "mainnet"

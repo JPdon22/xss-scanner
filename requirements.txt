@@ -1,4 +1,8 @@
+# Replace existing requirements.txt content with:
+fastapi==0.104.1
+uvicorn==0.24.0
 py-algorand-sdk==2.6.1
 algopy==0.7.2
 requests==2.32.3
 python-dotenv==1.0.1
+pydantic==2.4.2

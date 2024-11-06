@@ -22,10 +22,10 @@ class TestAlgorandXSSScanner(unittest.TestCase):
         with patch.object(self.scanner, '_scan_teal_code', return_value=['XSS vulnerability found']), \
              patch.object(self.scanner, '_scan_application_state', return_value=['State vulnerability found']):
 
-            scan_result = self.scanner.scan_contract(app_id=12345)
+            scan_result = self.scanner.scan_contract(app_id=1010)
 
             self.assertIsInstance(scan_result, ScanResult)
-            self.assertEqual(scan_result.app_id, 12345)
+            self.assertEqual(scan_result.app_id, 1010)
             self.assertIn('XSS vulnerability found', scan_result.vulnerabilities)
             self.assertIn('State vulnerability found', scan_result.vulnerabilities)
             self.assertIsNotNone(scan_result.risk_level)
@@ -44,10 +44,10 @@ class TestAlgorandXSSScanner(unittest.TestCase):
         with patch.object(self.scanner, '_scan_teal_code', return_value=[]), \
              patch.object(self.scanner, '_scan_application_state', return_value=[]):
 
-            scan_result = self.scanner.scan_contract(app_id=12345)
+            scan_result = self.scanner.scan_contract(app_id=1010)
 
             self.assertIsInstance(scan_result, ScanResult)
-            self.assertEqual(scan_result.app_id, 12345)
+            self.assertEqual(scan_result.app_id, 1010)
             self.assertEqual(scan_result.vulnerabilities, [])
             self.assertIsNotNone(scan_result.risk_level)
             self.assertIsNotNone(scan_result.recommendations)
@@ -57,7 +57,7 @@ class TestAlgorandXSSScanner(unittest.TestCase):
         # Simulate an error when retrieving contract info
         mock_application_info.side_effect = Exception("Connection error")
 
-        contract_info = self.scanner._get_contract_info(app_id=12345)
+        contract_info = self.scanner._get_contract_info(app_id=1010)
 
         self.assertIsNone(contract_info)
 
@@ -70,7 +70,7 @@ class TestAlgorandXSSScanner(unittest.TestCase):
             }
         }
 
-        app_state = self.scanner._get_application_state(app_id=12345)
+        app_state = self.scanner._get_application_state(app_id=1010)
 
         self.assertIsNotNone(app_state)
         self.assertEqual(app_state, {'some_key': 'some_value'})
@@ -82,7 +82,7 @@ class TestAlgorandXSSScanner(unittest.TestCase):
             'params': {}
         }
 
-        app_state = self.scanner._get_application_state(app_id=12345)
+        app_state = self.scanner._get_application_state(app_id=1010)
 
         self.assertIsNone(app_state)
 
